@@ -162,13 +162,15 @@ class DateTimeWidget(MultiWidget):
         js_options = datetimepicker_options % self.option
 
         id = uuid.uuid4().hex
-        return '<div id="%s"  class="input-append date form_datetime">'\
-               '%s'\
-               '<span class="add-on"><i class="icon-th"></i></span>'\
-               '</div>'\
-               '<script type="text/javascript">'\
-               '$("#%s").datetimepicker({%s});'\
-               '</script>  ' % (id, rendered_widgets[0], id, js_options)
+        return """
+               <div id="%s" class="input-group date form_datetime">
+                   %s
+                   <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+               </div>
+               <script type="text/javascript">
+                   $("#%s").datetimepicker({%s});
+               </script>
+               """ % (id, rendered_widgets[0], id, js_options)
 
     def _media(self):
         js = ["js/bootstrap-datetimepicker.js"]
@@ -177,8 +179,9 @@ class DateTimeWidget(MultiWidget):
 
         return widgets.Media(
             css={
-                'all': ('css/datetimepicker.css',)
+                'all': ('css/bootstrap-datetimepicker.css',)
             },
             js=js
         )
     media = property(_media)
+
