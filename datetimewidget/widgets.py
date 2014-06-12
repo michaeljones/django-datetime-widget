@@ -177,8 +177,9 @@ class DateTimeWidget(MultiWidget):
 
         return widgets.Media(
             css={
-                'all': ('css/datetimepicker.css',)
+                'all': ('css/bootstrap-datetimepicker.css',)
             },
             js=js
         )
     media = property(_media)
+
